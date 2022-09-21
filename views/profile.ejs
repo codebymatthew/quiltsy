@@ -1,0 +1,49 @@
+<%- include('partials/header') %> 
+<!-- Add Comment -->
+<div class="flex flex-col justify-between profilePost items-center">
+    <div class="flex flex-col items-center text-center border-solid border-2 border-rose-100 rounded w-2/3 mt-10">
+        <h2 class="mb-4">Add a post</h2>
+        <form action="/post/createPost" enctype="multipart/form-data" method="POST">
+        <div class="mb-3 flex flex-col">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title">
+        </div>
+        <div class="mb-3 flex flex-col">
+            <label for="needlework" class="form-label">Needlework</label>
+            <input type="text" class="form-control" id="needlework" name="needlework">
+        </div>
+        <div class="mb-3 flex flex-col">
+            <label for="caption" class="form-label">Caption</label>
+            <textarea class="form-control" id="caption" name="caption"></textarea>
+        </div>
+        <div class="mb-3 flex flex-col">
+            <label for="imgUpload" class="form-label">Image</label>
+            <input type="file" class="form-control" id="imageUpload" name="file">
+        </div>
+        <button type="submit" class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4" value="Upload">Submit</button>
+        </form>
+    </div>
+    <!-- Posts / Return to feed -->
+    <div class="flex flex-col items-center">
+        <h2 class="text-2xl bold uppercase">Your Posts</h2>
+        <ul class="">
+        <% for(var i=0; i<posts.length; i++) {%>
+          <li class="">
+            <a href="/post/<%= posts[i]._id%>">
+              <img class="img-fluid profilePostImg" src="<%= posts[i].image%>">
+            </a>
+          </li>
+        <% } %>
+        </ul>
+        <div class="mt-5">
+          <a class="btn bg-blue-700 hover:bg-blue-900 text-white font-bold py-1 px-2 rounded" href="/feed">Return to Feed</a>
+        </div>  
+      </div>  
+    <!-- User info / logout -->
+    <div class="flex flex-col items-center">
+        <p><strong>User Name</strong>: <%= user.userName %></p>
+        <p class="mb-4"><strong>Email</strong>: <%= user.email %></p>
+        <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"href="/logout" class="">Logout</a>
+    </div>
+</div>
+<%- include('partials/footer') %> 

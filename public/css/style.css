@@ -73,6 +73,23 @@ main {
     height: 85%;
     margin: 1.5rem auto 0 auto;
 }
+/* .feedLi {
+    min-height: 40rem;
+    width: 75%;
+} */
+/* .profilePostImg{
+    height: 30rem;
+    width: 95%;
+    margin: .5rem auto 0 auto;
+} */
+/* .feedImg {
+    width: 40rem;
+} */
+.feedUl {
+    margin: 0 auto;
+    width: 100%;
+}
+
 
 
 /* Footer Styles */
@@ -82,10 +99,14 @@ footer {
     bottom: 0;
     height: 10rem;
     width: 100%;
-    background: #F3788D
+    /* background: #F3788D; */
+    background: #FDA4AF;
+    text-align: center;
+    margin-top: 5rem;
 }
 .footerNav {
     display: flex;
+    justify-content: space-between;
     height: 100%;
 }
 .footerNavItem {
