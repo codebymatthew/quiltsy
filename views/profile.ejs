@@ -1,22 +1,22 @@
 <%- include('partials/header') %> 
-<!-- Add Comment -->
+<!-- Add Post -->
 <div class="flex flex-col justify-between profilePost items-center">
     <div class="flex flex-col items-center text-center border-solid border-2 border-rose-100 rounded w-2/3 mt-10">
-        <h2 class="mb-4">Add a post</h2>
+        <h2 class="mb-4 text-4xl">Add a post</h2>
         <form action="/post/createPost" enctype="multipart/form-data" method="POST">
-        <div class="mb-3 flex flex-col">
+        <div class="mb-3 flex flex-col text-xl">
             <label for="title" class="form-label">Title</label>
             <input type="text" class="form-control" id="title" name="title">
         </div>
-        <div class="mb-3 flex flex-col">
+        <div class="mb-3 flex flex-col text-xl">
             <label for="needlework" class="form-label">Needlework</label>
             <input type="text" class="form-control" id="needlework" name="needlework">
         </div>
-        <div class="mb-3 flex flex-col">
+        <div class="mb-3 flex flex-col text-xl">
             <label for="caption" class="form-label">Caption</label>
             <textarea class="form-control" id="caption" name="caption"></textarea>
         </div>
-        <div class="mb-3 flex flex-col">
+        <div class="mb-3 flex flex-col text-xl">
             <label for="imgUpload" class="form-label">Image</label>
             <input type="file" class="form-control" id="imageUpload" name="file">
         </div>
@@ -24,21 +24,43 @@
         </form>
     </div>
     <!-- Posts / Return to feed -->
-    <div class="flex flex-col items-center">
-        <h2 class="text-2xl bold uppercase">Your Posts</h2>
-        <ul class="">
-        <% for(var i=0; i<posts.length; i++) {%>
-          <li class="">
-            <a href="/post/<%= posts[i]._id%>">
-              <img class="img-fluid profilePostImg" src="<%= posts[i].image%>">
-            </a>
-          </li>
-        <% } %>
+
+      <ul class="flex flex-col items-center md:flex-row md:justify-around mb-40">
+        <% for(let i = 0; i<posts.length; i++) {%>
+            <div class="max-w-lg rounded overflow-hidden shadow-lg bg-rose-300 mb-5 ml-5">
+                <!-- image -->
+                <a href="/post/<%= posts[i]._id %> ">
+                    <img class="w-full cursor-pointer" src="<%= posts[i].image%>" alt="<% posts[i].caption%>">
+                </a>
+                <!-- title/like button -->
+                <div class="px-6 py-4">
+                    <!-- <div class="flex justify-between">
+                        <div class="font-bold text-xl mb-2"><%= posts[i].title%></div>
+                        <form
+                            action="/post/likePost/<%= posts.id %>?_method=PUT"
+                            method="POST">
+                            <button class="btn hover:text-rose-600 font-bold py-2 px-3 rounded text-rose-300 bg-white fa fa-heart" type="submit"></button>
+                        </form>
+                    </div> -->
+                    <!-- needlework info -->
+                    <p class="text-gray-700 text-base">Needlework: <%= posts[i].needlework %> </p>
+                    <!-- caption -->
+                    <p class="text-gray-700 text-base"><%= posts[i].caption%></p>
+                    <!-- likes / delete-->
+                    <div class="flex justify-between">
+                      <p>Likes: <%= posts[i].likes %> </p>
+                      <!-- <form
+                      action="/posts/deletePost/<%= posts.id %>?_method=DELETE"
+                      method="POST"
+                      class="col-3"
+                      >
+                      <button class="btn hover:text-rose-600 font-bold py-2 px-3 rounded text-rose-300 bg-white fa fa-trash" type="submit"></button>
+                    </form> -->
+                  </div>
+                </div>
+            </div>
+            <% } %>
         </ul>
-        <div class="mt-5">
-          <a class="btn bg-blue-700 hover:bg-blue-900 text-white font-bold py-1 px-2 rounded" href="/feed">Return to Feed</a>
-        </div>  
-      </div>  
     <!-- User info / logout -->
     <div class="flex flex-col items-center">
         <p><strong>User Name</strong>: <%= user.userName %></p>
@@ -46,4 +68,5 @@
         <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"href="/logout" class="">Logout</a>
     </div>
 </div>
+
 <%- include('partials/footer') %> 

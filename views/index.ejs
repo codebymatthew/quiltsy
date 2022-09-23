@@ -11,6 +11,17 @@
     <title>Sign Up</title>
 </head>
 <body>
+	<% if (locals.messages.errors) { %>
+		<% messages.errors.forEach( el => { %>
+			<div class="alert alert-danger"><%= el.msg %></div>
+		<% }) %>    
+	<% } %>
+	<% if (locals.messages.info) { %>
+		<% messages.info.forEach( el => { %>
+			<div class="alert alert-info"><%= el.msg %></div>
+		<% }) %>    
+	<% } %>
+	
 	<div class="bg-rose-400 h-screen overflow-hidden flex items-center justify-center">
 		<div class="bg-white lg:w-5/12 md:6/12 w-10/12 shadow-3xl">
 		<div class="bg-rose-300 absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full p-4 md:p-8">
