@@ -62,6 +62,20 @@ module.exports = {
       console.log(err);
     }
   },
+  likePostOnFeed: async (req, res) => {
+    try {
+      await Post.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $inc: { likes: 1 },
+        }
+      );
+      console.log("Likes +1");
+      res.redirect(`/feed/#${req.params.id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
   deletePost: async (req, res) => {
     try {
       // Find post by id

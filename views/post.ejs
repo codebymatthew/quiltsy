@@ -27,9 +27,17 @@
                             class="mr-4"
                             action="/post/likePost/<%= post.id %>?_method=PUT"
                             method="POST">
-                            <button  type="submit"><i class="fa-solid fa-heart cursor-pointer"></i></button>
+                            <button class="text-white bg-rose-300 px-1 rounded" type="submit"><i class="fa-solid fa-heart cursor-pointer"></i></button>
                         </form>
                         <h2>Likes: <%= post.likes %> </h2>
+                        <%if(post.user.user == user.id){ %>
+                            <form
+                                action="/post/deletePost/<%= post.id %>?_method=DELETE"
+                                method="POST"
+                                class="col-3">
+                                <button type="bg-blue-500 rounded py-2 px-4 submit">test</button>
+                            </form>
+                            <%}%>
 
                     </div>
                     <!-- <p class="text-sm text-gray-500 dark:text-gray-400">Lead Developer</p> -->
@@ -40,12 +48,4 @@
     </div>
 </section>
 
-<%if(post.user == user._id){ %>
-    <form
-        action="/post/deletePost/<%= post.id %>?_method=DELETE"
-        method="POST"
-        class="col-3">
-        <button type="submit">test</button>
-    </form>
-    <%}%>
 <%- include('partials/footer') -%> 
