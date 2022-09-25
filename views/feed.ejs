@@ -1,34 +1,63 @@
 <%- include('partials/header') %>
 <!-- Page Title -->
-<h1 class="text-3xl font-bold uppercase text-center">FeEd</h1>
 
 <!-- List Loop for posts -->
 <ul class="flex flex-col items-center md:flex-row md:justify-around mb-40">
     <% for(let i = 0; i<posts.length; i++) {%>
-        <div class="max-w-lg rounded overflow-hidden shadow-lg bg-rose-300 mb-5" id="<%= posts[i]._id %> ">
-            <!-- image -->
-            <a href="/post/<%= posts[i]._id %> ">
-                <img class="w-full cursor-pointer" src="<%= posts[i].image%>" alt="<% posts[i].caption%>">
-            </a>
-            <!-- title/like button -->
-            <div class="px-6 py-4">
+
+<!-- Post Card -->
+<div class='flex items-center justify-center mb-5 border-2 border-rose-200 border-solid'>
+    <div class="flex flex-col items-center justify-center relative">
+
+            <div
+                id="partnerCard"
+                class="bg-white text-black overflow-hidden rounded-md max-w-md p-2 h-[450px] flex flex-col"
+                >
                 <div class="flex justify-between">
-                    <div class="font-bold text-xl mb-2"><%= posts[i].title%></div>
-                    <form
-                        class="self-end"
-                        action="/post/likePostOnFeed/<%= posts[i]._id %>?_method=PUT"
-                        method="POST">
-                        <button class="btn hover:text-rose-600 font-bold py-2 px-3 rounded text-rose-300 bg-white" type="submit"><i class="fa fa-heart"></i></button>
-                    </form>
+                    <h3 class="text-left pl-8 pb-4 pt-2 text-xl">
+                        <%= posts[i].title %> 
+                    </h3>
                 </div>
-                <!-- needlework info -->
-                <p class="text-gray-700 text-base">Needlework: <%= posts[i].needlework %> </p>
-                <!-- caption -->
-                <p class="text-gray-700 text-base"><%= posts[i].caption%></p>
-                <!-- likes -->
-                <p>Likes: <%= posts[i].likes %> </p>
+                
+                <div class="flex items-center justify-center bg-rose-300 min-h-[200px]">
+                    
+                    <a
+                    class="flex items-center justify-center"
+                    href="/post/<%= posts[i]._id %> "
+                    rel="Post: <%= posts[i].title %> "
+                    >
+                    <img
+                    src="<%= posts[i].image %> "
+                    alt="<%= posts[i].caption %> "
+                    class="object-cover rounded-md h-96"
+                    />
+                    
+                </a>
             </div>
+            <div class="">
+                <div class="p-4 pr-0 text-lg col-span-3">
+                    <div class="flex justify-between">
+
+                        <h4 class="font-bold">
+                            Craft: <%= posts[i].needlework %> 
+                        </h4>
+                        <form
+                            class="self-end"
+                            action="/post/likePostOnFeed/<%= posts[i]._id %>?_method=PUT"
+                            method="POST">
+                            <button class="btn hover:text-rose-600 font-bold py-2 px-3 rounded text-rose-300 bg-white" type="submit"><i class="fa fa-heart"></i></button>
+                        </form> 
+                    </div>
+
+                    <p><%= posts[i].caption %> </p>
+                </div>
+                <p class="p-4 pr-0">Likes: <%= posts[i].likes %> </p>
+                </div>
+            </div>
+            
         </div>
+</div>
+
         <% } %>
     </ul>
 

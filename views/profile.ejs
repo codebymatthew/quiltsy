@@ -1,5 +1,5 @@
 <%- include('partials/header') %> 
-<!-- Add Post -->
+<!-- Flash Errors -->
 <% if (locals.messages.errors) { %>
     <% messages.errors.forEach( el => { %>
         <div class="alert alert-danger"><%= el.msg %></div>
@@ -10,21 +10,24 @@
         <div class="alert alert-info"><%= el.msg %></div>
     <% }) %>    
 <% } %>
-<div class="flex flex-col justify-between profilePost items-center">
-    <div class="flex flex-col items-center text-center border-solid border-2 border-rose-100 rounded w-2/3 mt-10">
+
+<!-- Add Post -->
+
+<div class="flex flex-col justify-between profilePost items-center mb-[7rem]">
+    <div class="flex flex-col items-center text-center border-solid border-2 border-rose-100 rounded w-2/3 mt-10 mb-8">
         <h2 class="mb-4 text-4xl">Add a post</h2>
         <form action="/post/createPost" enctype="multipart/form-data" method="POST">
         <div class="mb-3 flex flex-col text-xl">
             <label for="title" class="form-label">Title</label>
-            <input type="text" class="form-control" id="title" name="title">
+            <input type="text" class="form-control  border-2 border-solid border-rose-200" id="title" name="title">
         </div>
         <div class="mb-3 flex flex-col text-xl">
             <label for="needlework" class="form-label">Needlework</label>
-            <input type="text" class="form-control" id="needlework" name="needlework">
+            <input type="text" class="form-control  border-2 border-solid border-rose-200" id="needlework" name="needlework">
         </div>
         <div class="mb-3 flex flex-col text-xl">
             <label for="caption" class="form-label">Caption</label>
-            <textarea class="form-control" id="caption" name="caption"></textarea>
+            <textarea class="form-control border-2 border-solid border-rose-200" id="caption" name="caption"></textarea>
         </div>
         <div class="mb-3 flex flex-col text-xl">
             <label for="imgUpload" class="form-label">Image</label>
@@ -33,41 +36,71 @@
         <button type="submit" class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4" value="Upload">Submit</button>
         </form>
     </div>
+
     <!-- Posts / Return to feed -->
 
       <ul class="flex flex-col items-center md:flex-row md:justify-around mb-40">
         <% for(let i = 0; i<posts.length; i++) {%>
-            <div class="max-w-lg rounded overflow-hidden shadow-lg bg-rose-300 mb-5 ml-5">
-                <!-- image -->
-                <a href="/post/<%= posts[i]._id %> ">
-                    <img class="w-full cursor-pointer" src="<%= posts[i].image%>" alt="<% posts[i].caption%>">
-                </a>
-                <!-- title/like button -->
-                <div class="px-6 py-4">
-                    <!-- <div class="flex justify-between">
-                        <div class="font-bold text-xl mb-2"><%= posts[i].title%></div>
-                        <form
-                            action="/post/likePost/<%= posts.id %>?_method=PUT"
-                            method="POST">
-                            <button class="btn hover:text-rose-600 font-bold py-2 px-3 rounded text-rose-300 bg-white fa fa-heart" type="submit"></button>
-                        </form>
-                    </div> -->
-                    <!-- needlework info -->
-                    <p class="text-gray-700 text-base">Needlework: <%= posts[i].needlework %> </p>
-                    <!-- caption -->
-                    <p class="text-gray-700 text-base"><%= posts[i].caption%></p>
-                    <!-- likes / delete-->
-                    <div class="flex justify-between">
-                      <p>Likes: <%= posts[i].likes %> </p>
-                      <!-- <form
-                      action="/posts/deletePost/<%= posts.id %>?_method=DELETE"
-                      method="POST"
-                      class="col-3"
-                      >
-                      <button class="btn hover:text-rose-600 font-bold py-2 px-3 rounded text-rose-300 bg-white fa fa-trash" type="submit"></button>
-                    </form> -->
-                  </div>
-                </div>
+            <div class='flex items-center justify-center m-4 border-2 border-rose-200 border-solid rounded-xl'>
+                <div class="flex flex-col items-center justify-center relative">
+            
+                        <div
+                            id="partnerCard"
+                            class="bg-white text-black overflow-hidden rounded-md max-w-md p-2 h-[450px] flex flex-col"
+                            >
+                            <div class="flex justify-between">
+                                <h3 class="text-left pl-8 pb-4 pt-2 text-xl">
+                                    <%= posts[i].title %> 
+                                </h3>
+                            </div>
+                            
+                            <div class="flex items-center justify-center bg-rose-300 min-h-[200px]">
+                                
+                                <a
+                                class="flex items-center justify-center"
+                                href="/post/<%= posts[i]._id %> "
+                                rel="Post: <%= posts[i].title %> "
+                                >
+                                <img
+                                src="<%= posts[i].image %> "
+                                alt="<%= posts[i].caption %> "
+                                class="object-cover rounded-md h-96"
+                                />
+                                
+                            </a>
+                        </div>
+                        <div class="">
+                            <div class="p-4 pr-0 text-lg col-span-3">
+                                <div class="flex justify-between">
+            
+                                    <h4 class="font-bold">
+                                        Craft: <%= posts[i].needlework %> 
+                                    </h4>
+                                    <div class="flex flex-row">
+                                        <form
+                                        action="/post/deletePost/<%= posts.id %>?_method=DELETE"
+                                        method="POST"
+                                        class="mr-4"
+                                      >
+                                        <button class="btn hover:text-black font-bold py-2 px-4 rounded text-rose-300 bg-white" type="submit"><i class="fa fa-trash"></i></button>
+                                      </form>
+                                        <form
+                                            class="self-end"
+                                            action="/post/likePostOnFeed/<%= posts[i]._id %>?_method=PUT"
+                                            method="POST">
+                                            <button class="btn hover:text-rose-600 font-bold py-2 px-3 rounded text-rose-300 bg-white" type="submit"><i class="fa fa-heart"></i></button>
+                                        </form> 
+
+                                    </div>
+                                </div>
+            
+                                <p><%= posts[i].caption %> </p>
+                            </div>
+                            <p class="p-4 pr-0">Likes: <%= posts[i].likes %> </p>
+                            </div>
+                        
+                        </div>
+                    </div>
             </div>
             <% } %>
         </ul>
