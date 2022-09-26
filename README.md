@@ -4,7 +4,7 @@
 
 Stitched to Death is a social media app for the needlework community.  
 
-![Demo Gif](https://imgur.com/PiEeukI)
+![Demo Gif](demo.gif)
 
 ### How it is made  
 
