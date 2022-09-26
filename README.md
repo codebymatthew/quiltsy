@@ -1,7 +1,20 @@
-# Quiltsy (name pending)
+# Stitched to Death (name pending)  
 
 ## Description  
 
-This app was made to bring the sewing community together.  I will also be including other needle craft such as crochet and knitting.  
+Stitched to Death is a social media app for the needlework community.  
 
-### More info to come!
+![Demo Gif](https://imgur.com/PiEeukI)
+
+### How it is made  
+
+**Technology Used** JavaScript, Tailwindcss, node/express, mongoDB, EJS.  
+
+### Optimizations  
+
+- Local Shops
+- Local/Nationwide Events
+- Profile Pictures
+- Followers
+- Feed that updates on more variables
+- Add editing to posts

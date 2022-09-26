@@ -49,12 +49,12 @@
                             class="bg-white text-black overflow-hidden rounded-md max-w-md p-2 h-[450px] flex flex-col"
                             >
                             <div class="flex justify-between">
-                                <h3 class="text-left pl-8 pb-4 pt-2 text-xl">
+                                <h3 class="text-left ml-1 pb-4 pt-2 text-xl">
                                     <%= posts[i].title %> 
                                 </h3>
                             </div>
                             
-                            <div class="flex items-center justify-center bg-rose-300 min-h-[200px]">
+                            <div class="flex items-center justify-center min-h-[200px]">
                                 
                                 <a
                                 class="flex items-center justify-center"
@@ -78,34 +78,28 @@
                                     </h4>
                                     <div class="flex flex-row">
                                         <form
-                                        action="/post/deletePost/<%= posts.id %>?_method=DELETE"
+                                        action="/post/deletePost/<%= posts[i].id %>?_method=DELETE"
                                         method="POST"
-                                        class="mr-4"
+                                        class=""
                                       >
-                                        <button class="btn hover:text-black font-bold py-2 px-4 rounded text-rose-300 bg-white" type="submit"><i class="fa fa-trash"></i></button>
+                                        <button class="btn font-bold py-2 px-3 rounded text-rose-300 bg-white border-2 border-rose-100 border-solid" type="submit"><i class="fa fa-trash"></i></button>
                                       </form>
-                                        <form
-                                            class="self-end"
-                                            action="/post/likePostOnFeed/<%= posts[i]._id %>?_method=PUT"
-                                            method="POST">
-                                            <button class="btn hover:text-rose-600 font-bold py-2 px-3 rounded text-rose-300 bg-white" type="submit"><i class="fa fa-heart"></i></button>
-                                        </form> 
 
                                     </div>
                                 </div>
             
                                 <p><%= posts[i].caption %> </p>
                             </div>
-                            <p class="p-4 pr-0">Likes: <%= posts[i].likes %> </p>
-                            </div>
-                        
+                            <p class="pl-4">Likes: <%= posts[i].likes %> </p>
+                            <p class="pl-4">Posted: <%= posts[i].postedAt %> </p>
+                        </div>
                         </div>
                     </div>
             </div>
             <% } %>
         </ul>
     <!-- User info / logout -->
-    <div class="flex flex-col items-center">
+    <div class="flex flex-col items-center mb-[7.5rem]">
         <p><strong>User Name</strong>: <%= user.userName %></p>
         <p class="mb-4"><strong>Email</strong>: <%= user.email %></p>
         <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"href="/logout" class="">Logout</a>
