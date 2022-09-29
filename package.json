@@ -2,7 +2,7 @@
   "name": "100h",
   "version": "1.0.0",
   "description": "100 hours project for #100devs",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js"
