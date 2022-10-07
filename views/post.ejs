@@ -22,13 +22,31 @@
                 <div class="text-xl">
                     <h1 class="text-black">Posted By: <%= post.user.userName %> </h1>
                     <div class="flex flex-row">
-                        <form
+                      <div class="mt-5">
+                          <div class="flex">
+
+                            <form
                             class="mr-4"
                             action="/post/likePost/<%= post._id %>?_method=PUT"
                             method="POST">
                             <button class="text-white bg-rose-300 px-1 rounded" type="submit"><i class="fa-solid fa-heart cursor-pointer"></i></button>
-                        </form>
-                        <h2>Likes: <%= post.likes %> </h2>
+                          </form>
+                          <h2>Likes: <%= post.likes %> </h2>
+                        </div>
+                          <!-- Add Comment Box -->
+                          <section class="mt-4">
+                            <!-- <h2>Add a Comment</h2>
+                            <form action="/comment/createComment/<%= post._id%>" method="POST">
+                              <div class="mb-3 flex flex-col">
+                                  <label for="comment" class="form-label">Comment</label>
+                                  <textarea type="text" class="form-control h-60 w-96 border-solid border-2 border-rose-100 rounded" id="comment" name="comment" > </textarea>
+                              </div>
+                              <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                          </section> -->
+                        </div>
+                        
+                        
                     </div>
                     <!-- <p class="text-sm text-gray-500 dark:text-gray-400">Lead Developer</p> -->
                 </div>
@@ -36,6 +54,37 @@
             </div>
         </div>
     </div>
+
+  <!-- Comment Area -->
+  
+  
+  <!-- <ul>
+    <% for(var i=0; i<comments.length; i++) {%>
+      <li class="col-6 justify-content-between mt-5">
+        <%= comments[i].user.userName %>: <%= comments[i].comment%>
+        Likes 
+        <form
+            class="col-1"
+            action="/comment/likeComment/<%= comments[i]._id %>?_method=PUT"
+            method="POST"
+          >
+            <button class="color-red fa fa-heart" type="submit"></button>
+          </form>
+          <h3 class="col-3">Likes: <%= comments[i].likes %></h3>
+          Delete Comment
+        <%if(comments[i].user._id == user.id){ %>
+          <form
+            action="/comment/deleteComment/<%= comments[i]._id %>?_method=DELETE"
+            method="POST"
+            class="col-3"
+          >
+            <button class="btn btn-primary fa fa-trash" type="submit"></button>
+          </form>
+          <% } %>
+          
+      </li>
+    <% } %>
+  </ul> -->
 </section>
 
 <%- include('partials/footer') -%> 
