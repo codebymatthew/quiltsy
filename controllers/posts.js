@@ -15,7 +15,7 @@ module.exports = {
   getFeed: async (req, res) => {
     try {
       const posts = await Post.find().sort({ likes: "desc" }).lean();
-      res.render("feed.ejs", { posts: posts});
+      res.render("feed.ejs", { posts: posts, user: req.user });
     } catch (err) {
       console.log(err);
     }
@@ -54,7 +54,7 @@ module.exports = {
       await Post.findOneAndUpdate(
         { _id: req.params.id },
         {
-          $inc: { likes: 1 },
+          $push: { likedBy: req.user.userName },
         }
       );
       console.log("Likes +1");
@@ -68,11 +68,41 @@ module.exports = {
       await Post.findOneAndUpdate(
         { _id: req.params.id },
         {
-          $inc: { likes: 1 },
+          $push: { likedBy: req.user.userName },
         }
       );
       console.log("Likes +1");
       res.redirect(`/feed/#${req.params.id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  dislikePostOnFeed: async (req, res) => {
+    try {
+      await Post.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $pull: { likedBy: req.user.userName },
+        },
+        {safe: true}
+      );
+      console.log("Likes -1");
+      res.redirect(`/feed/#${req.params.id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  dislikePost: async (req, res) => {
+    try {
+      await Post.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $pull: { likedBy: req.user.userName },
+        },
+        {safe: true}
+      );
+      console.log("Likes -1");
+      res.redirect(`/post/${req.params.id}`);
     } catch (err) {
       console.log(err);
     }
