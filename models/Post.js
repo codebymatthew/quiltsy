@@ -15,7 +15,7 @@ const PostSchema = new mongoose.Schema({
     },
     image:{
         type: String,
-        requred: true,
+        required: true,
     },
     likes:{
         type: String,
@@ -37,6 +37,10 @@ const PostSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+    likedBy:{
+        type: Array,
+        default: []
+    }
 })
 
 module.exports = mongoose.model('Post', PostSchema)

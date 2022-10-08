@@ -11,7 +11,11 @@ router.post("/createPost", upload.single("file"), postsController.createPost);
 
 router.put("/likePost/:id", postsController.likePost);
 
+router.put("/dislikePost/:id", postsController.dislikePost);
+
 router.put("/likePostOnFeed/:id", postsController.likePostOnFeed);
+
+router.put("/dislikePostOnFeed/:id", postsController.dislikePostOnFeed);
 
 router.delete("/deletePost/:id", postsController.deletePost);
 
