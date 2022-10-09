@@ -4,21 +4,24 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="/imgs/favicon.ico" type="image/x-icon">
         <!-- FONT ICONS -->
         <script src="https://kit.fontawesome.com/db349aca81.js" crossorigin="anonymous"></script>
         <!-- STYLESHEETS -->
         <link rel="stylesheet" href="/css/style.css">
         <!-- TailWind -->
         <script src="https://cdn.tailwindcss.com"></script>
+        <!-- flobite for modal -->
+        <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.css" />
         <title>Stitched to Death</title>
     </head>
-    <body class="flex flex-col h-screen justify-between md:w-3/4 mx-auto min-h-100vh">
-    <!-- Hamburger Menu -->
-    <header class="bg-rose-300 h-[6.5rem] w-full self-center">
-
-        <nav class="flex">
-            <!-- <i class="fa-solid fa-bars nav-fa"></i> -->
-            <p class="text-[3rem] text-center font-bold mt-6 w-full font-serif"><a href="/feed">Stitched To Death</a></p>
-            <!-- <i class="fa-solid fa-bell nav-fa"></i> -->
-        </nav>
+    <div id="top" class="w-0 h-0"></div>
+    <body class="flex flex-col h-screen justify-between md:w-3/4 mx-auto min-h-100vh scroll-smooth">
+        <header class="bg-rose-300 h-[6.5rem] w-full sticky top-0 z-10">
+            <nav class="flex">
+                <i class="fa fa-bars text-5xl ml-4 mt-4"></i>
+                <!-- <i class="fa-solid fa-bars nav-fa"></i> -->
+                <p class="text-[2rem] md:text-[3rem] text-center font-bold mt-6 w-full font-serif"><a href="/feed">Stitched To Death</a></p>
+                <!-- <i class="fa-solid fa-bell nav-fa"></i> -->
+            </nav>
     </header>

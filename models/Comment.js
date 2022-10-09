@@ -25,6 +25,10 @@ const CommentSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    likedBy: {
+        type: Array,
+        default: []
+    }
 })
 
 module.exports = mongoose.model('Comment', CommentSchema)

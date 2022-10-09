@@ -13,15 +13,19 @@
 <body>
     <section class="text-gray-600 body-font">
         <div class="container mx-auto flex px-5 py-[3rem] items-center justify-center flex-col">
+          <!-- Title Image -->
           <img class="lg:w-3/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero" src="/imgs/sm2.jpg">
           <div class="text-center lg:w-2/3 w-full">
+            <!-- Title and Info -->
             <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Welcome to Stitched to Death</h1>
             <p class="mb-8 leading-relaxed">Don't let the sewing machine throw you off!  Stitched to Death is for everyone who loves needlecrafts.  Knitters, crocheters, embroiderers, cross-stitchers and all others you can think of are welcome to join!</p>
+            <!-- Login / Sign up buttons -->
             <div class="flex justify-center">
               <a href="/login" class="inline-flex text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded text-lg">Login</a>
               <a href="/signup" class="ml-4 inline-flex text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded text-lg">Sign Up</a>
               <!-- <button class="inline-flex text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded text-lg">Tour</button> -->
             </div>
+            <!-- Guest Login -->
             <form action="/login" method="POST" class="w-full">
               <input type="text" id="email" name="email" class="form-control hidden" value="thebestguest@thebestguest.com">
               <input type="password" id="password" name="password" class="form-control hidden " value="thebestguest">
