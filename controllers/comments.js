@@ -24,7 +24,22 @@ module.exports = {
       await Comment.findOneAndUpdate(
         { _id: req.params.id },
         {
-          $inc: { likes: 1 },
+          $push: { likedBy: req.user.id },
+        }
+      );
+      console.log("Likes +1");
+      res.redirect(`/post/${comment.post}`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  dislikeComment: async (req, res) => {
+    try {
+      let comment = await Comment.findById(req.params.id)
+      await Comment.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $pull: { likedBy: req.user.id },
         }
       );
       console.log("Likes +1");

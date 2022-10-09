@@ -54,7 +54,7 @@ module.exports = {
       await Post.findOneAndUpdate(
         { _id: req.params.id },
         {
-          $push: { likedBy: req.user.userName },
+          $push: { likedBy: req.user.id },
         }
       );
       console.log("Likes +1");
@@ -68,7 +68,7 @@ module.exports = {
       await Post.findOneAndUpdate(
         { _id: req.params.id },
         {
-          $push: { likedBy: req.user.userName },
+          $push: { likedBy: req.user.id },
         }
       );
       console.log("Likes +1");
@@ -82,7 +82,7 @@ module.exports = {
       await Post.findOneAndUpdate(
         { _id: req.params.id },
         {
-          $pull: { likedBy: req.user.userName },
+          $pull: { likedBy: req.user.id },
         },
         {safe: true}
       );
@@ -97,7 +97,7 @@ module.exports = {
       await Post.findOneAndUpdate(
         { _id: req.params.id },
         {
-          $pull: { likedBy: req.user.userName },
+          $pull: { likedBy: req.user.id },
         },
         {safe: true}
       );

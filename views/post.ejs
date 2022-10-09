@@ -1,11 +1,11 @@
 <%- include('partials/header') -%> 
 
 <!-- component -->
-<section class="bg-white mb-10">
+<section class="bg-white mb-20">
     <div class="container px-6 py-10 mx-auto">
         
-        <div class="mt-8 lg:-mx-6 lg:flex lg:items-center">
-            <img class="object-cover w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-2/3" src="<%= post.image %> "alt="">
+        <div class="mt-8 lg:mx-6 lg:flex lg:items-center">
+            <img class="object-cover w-3/4 lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-2/3" src="<%= post.image %> "alt="">
             
             <div class="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
                 <h1 class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl mb-4 "><%= post.title %> </h1>
@@ -13,24 +13,15 @@
                 <p class="text-xl">
                     <%= post.caption %> 
                 </p>
-
-                <!-- <a href="#" class="inline-block mt-2 text-blue-500 underline hover:text-blue-400">Read more</a> -->
-
+                
                 <div class="flex items-start">
-                    <!-- <img class="object-cover object-center w-10 h-10 rounded-full" src="https://images.unsplash.com/photo-1531590878845-12627191e687?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80" alt=""> -->
 
                 <div class="text-xl">
                     <h1 class="text-black">Posted By: <%= post.user.userName %> </h1>
                     <div class="flex flex-row">
                       <div class="mt-5">
                           <div class="flex">
-                            <!-- <form
-                            class="mr-4"
-                            action="/post/likePost/<%= post._id %>?_method=PUT"
-                            method="POST">
-                            <button class="text-white bg-rose-300 px-1 rounded" type="submit"><i class="fa-solid fa-heart cursor-pointer"></i></button>
-                          </form> -->
-                          <% if (post.likedBy.includes(user.userName)) { %>
+                          <% if (post.likedBy.includes(user.id)) { %>
                             <form
                             class="self-end"
                             action="/post/dislikePost/<%= post._id %>?_method=PUT"
@@ -45,17 +36,17 @@
                             <button class="btn hover:text-rose-600 font-bold py-2 px-3 rounded text-rose-300 bg-white border-2 border-rose-100 border-solid" type="submit"><i class="fa fa-heart"></i></button>
                         </form> 
                         <% } %>
-                          <h2>Likes: <%= post.likedBy.length %> </h2>
+                          <h2 class="self-center ml-2">Likes: <%= post.likedBy.length %> </h2>
                         </div>
                           <!-- Add Comment Box -->
                           <section class="mt-4">
-                            <h2>Add a Comment</h2>
+                            <!-- <h2>Add a Comment</h2> -->
                             <form action="/comment/createComment/<%= post._id%>" method="POST">
                               <div class="mb-3 flex flex-col">
                                   <label for="comment" class="form-label">Comment</label>
-                                  <textarea type="text" class="form-control h-60 w-96 border-solid border-2 border-rose-100 rounded resize-none" id="comment" name="comment" > </textarea>
+                                  <textarea type="text" class="form-control h-52 w-96 border-solid border-2 border-rose-100 rounded resize-none" id="comment" name="comment" > </textarea>
                               </div>
-                              <button type="submit" class="btn-primary bg-rose-200 p-2 rounded cursor-pointer hover:bg-rose-300 border-2 border-rose-300 border-solid">Submit</button>
+                              <button type="submit" class="btn-primary bg-rose-200 p-2 rounded cursor-pointer hover:bg-rose-300 border-2 border-rose-300 border-solid mb-8" >Submit</button>
                             </form>
                           </section>
                         </div>
@@ -71,39 +62,55 @@
 
   <!-- Comment Area -->
   
-  
-  <!-- <ul class="flex">
+  <ul class="flex flex-col">
+    <% if (comments.length === 0) { %>
+      <h3 class="text-xl ml-4 text-center">Post to be the first commentor!</h3>
+      <% } else { %>
+    <h3 class="text-center text-xl">Comments</h3>
     <% for(var i=0; i<comments.length; i++) {%>
-      <li class="col-6 justify-content-between mt-5 mr-4">
+      <li class="col-6 justify-content-between mt-5 mx-auto p-2 border-2 border-rose-100 border-solid flex flex-col w-[90%]">
         <div class="flex flex-col">
         </div>
-        <p><%= comments[i].user.userName %>: </p> <p><%= comments[i].comment%></p>
+        <p class="font-bold text-lg"><%= comments[i].user.userName %></p>
+        <p class="text-lg"><%= comments[i].comment%></p>
         
-        Likes 
+        <!-- Likes  -->
         <div class="flex">
+        <% if (comments[i].likedBy.includes(user.id)) { %>
           <form
           class="col-1 mr-2"
-          action="/comment/likeComment/<%= comments[i]._id %>?_method=PUT"
+          action="/comment/dislikeComment/<%= comments[i]._id %>?_method=PUT"
           method="POST"
           >
-          <button class="color-red cursor-pointer text-white bg-rose-300 px-1 rounded" type="submit"><i class="fa fa-heart"></i></button>
+          <button class="text-red-500 cursor-pointer bg-white px-1 rounded border-2 border-rose-100 border-solid" type="submit"><i class="fa fa-heart"></i></button>
         </form>
-        <h3 class="col-3">Likes: <%= comments[i].likes %></h3>
-        </div>
-          Delete Comment
-        <%if(comments[i].user._id == user.id){ %>
-          <form
-            action="/comment/deleteComment/<%= comments[i]._id %>?_method=DELETE"
+        <% } else { %>
+            <form
+            class="col-1 mr-2"
+            action="/comment/likeComment/<%= comments[i]._id %>?_method=PUT"
             method="POST"
-            class="col-3 mt-2 text-center"
-          >
-            <button class="btn btn-primary cursor-pointer text-white p-1 bg-rose-200 hover:bg-rose-300 rounded" type="submit"><i class="fa fa-trash"></i></button>
+            >
+            <button class="color-red cursor-pointer text-white bg-rose-300 px-1 rounded" type="submit"><i class="fa fa-heart"></i></button>
           </form>
           <% } %>
+          <div class="flex">
+        <h3 class="col-3">Likes: <%= comments[i].likedBy.length %></h3>
+         </div>
+         <%if(comments[i].user._id == user.id){ %>
+           <form
+             action="/comment/deleteComment/<%= comments[i]._id %>?_method=DELETE"
+             method="POST"
+             class="col-3 mt-2 ml-auto"
+           >
+             <button class="btn btn-primary cursor-pointer text-white p-1 bg-rose-200 hover:bg-rose-300 rounded" type="submit"><i class="fa fa-trash"></i></button>
+           </form>
+           <% } %>
+          </div>
           
       </li>
+      <% } %>
     <% } %>
-  </ul> -->
+  </ul>
 </section>
-
+<div class="h-48 w-full text-white"> . <br /> .</div>
 <%- include('partials/footer') -%> 
