@@ -19,9 +19,47 @@
     <body class="flex flex-col h-screen justify-between md:w-3/4 mx-auto min-h-100vh scroll-smooth">
         <header class="bg-rose-300 h-[6.5rem] w-full sticky top-0 z-10">
             <nav class="flex">
-                <i class="fa fa-bars text-5xl ml-4 mt-4"></i>
+                <!-- Modal toggle -->
+                <button class="" type="button" data-modal-toggle="defaultModal">
+                    <i class="fa fa-bars text-4xl ml-5"></i>
+                </button>
+                <!-- <i class="fa fa-bars text-5xl ml-4 mt-4"></i> -->
                 <!-- <i class="fa-solid fa-bars nav-fa"></i> -->
                 <p class="text-[2rem] md:text-[3rem] text-center font-bold mt-6 w-full font-serif"><a href="/feed">Stitched To Death</a></p>
                 <!-- <i class="fa-solid fa-bell nav-fa"></i> -->
             </nav>
     </header>
+        <!-- Modal Stuff -->
+        
+
+<!-- Main modal -->
+<div id="defaultModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center">
+    <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+        <!-- Modal content -->  
+        <div class="relative bg-white rounded-lg shadow h-96">
+            <!-- Modal header -->
+            <div class="flex justify-between items-start p-4 rounded-t border-b dark:border-gray-600">
+                <h3 class="text-xl font-semibold text-black text-center w-full ml-8 text-5xl">
+                    Navigation
+                </h3>
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="defaultModal">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <section class="m-4 text-black text-center underline text-4xl">
+                <a href="/feed">Feed</a>
+            </section>
+            <section class="m-4 text-black text-center underline text-4xl">
+                <a href="/profile">Profile</a>
+            </section>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+
+
+
+
