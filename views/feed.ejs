@@ -6,7 +6,7 @@
     <% for(let i = 0; i<posts.length; i++) {%>
 
 <!-- Post Card -->
-    <div class='flex items-center justify-center mb-[25px] md:mb-[70px] border-2 border-rose-200 border-solid rounded-md mx-2 last:mb-[100px] md:last:mb-[70px]'>
+    <div class='flex items-center justify-center mb-[25px] border-2 border-rose-200 border-solid rounded-md mx-2 '>
         <div class="flex flex-col items-center justify-center relative">
 
                 <div
@@ -70,7 +70,7 @@
                         <!-- Likes and Posted At info -->
                     </div>
                     <p class="pl-4">Likes: <%= posts[i].likedBy.length %> </p>
-                    <p class="pl-4">Posted at: <%= posts[i].postedAt %> </p>
+                    <!-- <p class="pl-4">Posted at: <%= posts[i].postedAt %> </p> -->
                     </div>
                 </div>
                 
