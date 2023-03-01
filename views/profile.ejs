@@ -16,11 +16,13 @@
     <!-- Add Post Modal-->
     <%- include('components/commentModal') %> 
     <!-- Posts / Return to feed -->
-
-      <ul class="flex flex-col items-center md:flex-row md:justify-around mb-40">
-        <% for(let i = 0; i<posts.length; i++) {%>
-            <div class='flex items-center justify-center m-4 border-2 border-rose-200 border-solid rounded-xl'>
-                <div class="flex flex-col items-center justify-center relative">
+    <% if (posts.length === 0) { %>
+        <p class="text-4xl mb-[40%] mt-10">Post your first project!</p>   
+     <% } else { %>
+        <ul class="flex flex-col items-center md:flex-row md:justify-around mb-40">
+            <% for(let i = 0; i<posts.length; i++) {%>
+                <div class='flex items-center justify-center m-4 border-2 border-rose-200 border-solid rounded-xl'>
+                    <div class="flex flex-col items-center justify-center relative">
             
                         <div
                             id="partnerCard"
@@ -50,7 +52,7 @@
                         <div class="">
                             <div class="p-4 pr-0 text-lg col-span-3">
                                 <div class="flex justify-between">
-            
+                                    
                                     <h4 class="font-bold">
                                         Craft: <%= posts[i].needlework %> 
                                     </h4>
@@ -59,23 +61,24 @@
                                         action="/post/deletePost/<%= posts[i].id %>?_method=DELETE"
                                         method="POST"
                                         class=""
-                                      >
+                                        >
                                         <button class="btn font-bold py-2 px-3 rounded text-rose-300 hover:text-black bg-white border-2 border-rose-100 border-solid" type="submit"><i class="fa fa-trash"></i></button>
-                                      </form>
-
-                                    </div>
+                                    </form>
+                                    
                                 </div>
-            
-                                <p><%= posts[i].caption %> </p>
                             </div>
-                            <p class="pl-4">Likes: <%= posts[i].likes %> </p>
-                            <p class="pl-4">Posted: <%= posts[i].postedAt %> </p>
+                            
+                            <p><%= posts[i].caption %> </p>
                         </div>
-                        </div>
+                        <p class="pl-4">Likes: <%= posts[i].likes %> </p>
+                        <p class="pl-4">Posted: <%= posts[i].postedAt %> </p>
                     </div>
+                </div>
             </div>
-            <% } %>
-        </ul>
+        </div>
+        <% } %>
+    </ul>
+    <% } %>
     <!-- User info / logout -->
     <div class="flex flex-col items-center mb-[7.5rem]">
         <p><strong>User Name</strong>: <%= user.userName %></p>
